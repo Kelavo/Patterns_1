@@ -11,7 +11,7 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class DeliveryTest {
+class DeliveryTest {
 
     @BeforeEach
     void setup() {
