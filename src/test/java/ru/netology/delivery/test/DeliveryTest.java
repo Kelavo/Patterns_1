@@ -11,7 +11,7 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 
-class DeliveryTest {
+public class DeliveryTest {
 
     @BeforeEach
     void setup() {
@@ -19,7 +19,7 @@ class DeliveryTest {
     }
 
     @Test
-    //@DisplayName("Should successful plan and replan meeting")
+    @DisplayName("Should successful plan and replan meeting")
     void shouldSuccessfulPlanAndReplanMeeting() {
         var validUser = DataGenerator.Registration.generateUser("ru");
         var daysToAddForFirstMeeting = 4;
