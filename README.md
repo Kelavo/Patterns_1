@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/hjot8u719t60x21m/branch/main?svg=true)](https://ci.appveyor.com/project/Kelavo/patterns-1/branch/main)
