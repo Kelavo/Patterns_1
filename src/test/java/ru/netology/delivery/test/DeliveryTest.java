@@ -1,6 +1,7 @@
 package ru.netology.delivery.test;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class DeliveryTest {
         var firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         var daysToAddForSecondMeeting = 7;
         var secondMeetingDate = DataGenerator.generateDate(daysToAddForSecondMeeting);
-
+        Configuration.holdBrowserOpen = true;
         $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.DELETE);
         $("[data-test-id='date'] input").setValue(firstMeetingDate);
@@ -41,6 +42,10 @@ class DeliveryTest {
         $x("//button[contains(@class,'button')]").click();
         $("[data-test-id='date'] input").setValue(secondMeetingDate);
         $x("//span[@class='button__text']").click();
+        $("[data-test-id=replan-notification] .notification__content")
+                .shouldHave(Condition.text("У вас уже запланирована встреча на другую дату. Перепланировать?"), Duration.ofSeconds(15))
+                .shouldBe(Condition.visible);
+        $(".button_size_s").click();
         $x("//*[contains(text(),'Успешно!')]").shouldBe(Condition.visible, Duration.ofSeconds(15));
         $("[class='notification__content']").shouldHave(Condition.exactText("Встреча успешно запланирована на " + secondMeetingDate));
     }
